@@ -160,6 +160,8 @@ class Remote {
   }
 
   // Get Secret Phrase Function
+  // Due to continuous server side errors...
+  // ...i was unable to test or use this endpoint
   Future getSecret(String token) async {
     var url = Uri.parse('$baseUrl/dashboard');
 
@@ -175,7 +177,8 @@ class Remote {
 
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        return result['message'];
+        return result['data'][
+            'message']; // Not sure if this is the structure of the response (again... due to Server Errors)
       } else {
         return "";
       }
